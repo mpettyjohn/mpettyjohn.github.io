@@ -120,8 +120,15 @@ Type HELP for available commands
                     case 'LOGOFF':
                         blackout.style.display = 'flex';
                         typeOutText('You are now leaving Mark\'s website...', () => {
-                            window.location.href = 'https://www.spacejam.com/1996/';
-                        });
+                            const websites = [
+                            'https://theaviationgeekclub.com/story-behind-famed-sr-71-blackbird-super-low-knife-edge-pass/',
+                            'https://www.spacejam.com/1996/'
+                ];
+                        const randomIndex = Math.floor(Math.random() * websites.length);
+                            window.location.href = websites[randomIndex];
+    });
+    break;
+
                         return;
                     case 'FUN':
                         blackout.style.display = 'flex';
