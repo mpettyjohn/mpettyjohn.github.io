@@ -56,11 +56,12 @@ CP/M-86 for the IBM Personal Computer
 Version 1.0
 Copyright 1982, Digital Research Inc.
 
-Hi, I'm Mark. We're partying like it's 1982 here.
+Hi, I'm Mark.
 
 Want to read a few things I've written or have some fun?
 
-Click the command line below and type HELP for available commands
+If you missed the DOS era or don't have command line experience, just click below and type HELP to see what you can do here.
+
  
     </div>
     <input id="commandInput" placeholder="C:\>">
@@ -96,10 +97,10 @@ Click the command line below and type HELP for available commands
 
                 switch (command) {
                     case 'DIR':
-                        response = '1. Managing by Metrics\n2. Strategy\n3. Coffee Conversations\n4. Read \n5. Nostalgia - Oregon Trail';
+                        response = '1. Managing by Metrics\n2. Strategy\n3. Coffee Conversations\n4. Books';
                         break;
                     case 'HELP':
-                        response = 'Available commands: DIR, HELP, OPEN <number>, DATE, FUN, LOGOFF';
+                        response = 'Available commands: DIR, HELP, OPEN <number>, DATE, FUN, NOSTALGIA, LOGOFF';
                         break;
                     case 'OPEN 1':
                         window.location.href = 'metrics.html';
@@ -113,12 +114,12 @@ Click the command line below and type HELP for available commands
                     case 'OPEN 4':
                         window.location.href = 'read.html';
                         return;
-                    case 'OPEN 5':
-                        window.location.href = 'trail.html';
-                        return;
                     case 'DATE':
                         response = new Date().toLocaleString();
                         break;
+                    case 'NOSTALGIA':
+                        window.location.href = 'trail.html';
+                        return;
                     case 'LOGOFF':
                         blackout.style.display = 'flex';
                         typeOutText('You are now leaving Mark\'s website...', () => {
