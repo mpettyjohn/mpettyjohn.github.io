@@ -22,6 +22,9 @@
 		h1, h2, h3 {
 			line-height: 1.2;
 		}
+		.hidden {
+            display: none;
+        }
 		</style>
 </head>
 
@@ -36,19 +39,17 @@
 
 		<h1>Coffee Conversations</h1> 
 
-<p>There are times where a conversation can supercharge learning and understanding in ways that reading can't.</p>
 <p>Here are a few people I would like to have conversations with about their experiences and why:</p>
 
  <ul>
-  <li><a href="#kuzak">Derrick Kuzak</a></li>
-  <li><a href="#spotswood">Krisanna Spotswood</a></li>
-  <li><a href="#gates">Bill Gates</a></li>
-  <li>Scott Carrell and James West (coming soon)</li>
+	<li><a href="#kuzak" class="toggleVisibility">Derrick Kuzak</a></li>
+	<li><a href="#spotswood" class="toggleVisibility">Krisanna Spotswood</a></li>
+	<li><a href="#gates" class="toggleVisibility">Bill Gates</a></li>
+	<li><a href="#usafa" class="toggleVisibility">Scott Carrell and James West</a></li>
 </ul> 
 	</header>
 
-
-
+<div id="kuzak" class="hidden">
 <h3><a id="kuzak">Derrick Kuzak</a></h3>
 <p>Turnarounds seldom turn.</p> 
 
@@ -62,6 +63,9 @@
 
 <p> How did someone described by Hoffman as understated, with little ego thrive in the cut throat world of Ford during those years?</p>
 
+</div>
+
+<div id="spotswood" class="hidden">
 <h3><a id="spotswood">Krisanna Spotswood</a></h3></p>
 
 <p>For decades the Human Resource function has been trying to break free from its roots in administrivia and compliance. David Ulrich came on the scene in the late 1990s with the HRBP revolution. Ulrich looked to instigate a paradigm shift from HR as an adminstrative and compliance cost center to HR as a strategic business partner focused on results. HR has also been shaken up by tech's rebrand of it as the People function. The terminology of both took hold, new ideas came about, but overall HR's administrivia and compliance roots still have a stranglehold on the profession. </p>
@@ -85,9 +89,11 @@
 
 <p><i>The Business Operations Program Management Team is a highly visible team that works closely with senior leaders across the organization with the goal of up-leveling organizational effectiveness in a hyper-growth organization. Our Business Operations Program Managers combine a creative, human-centered approach to designing processes, experiences and solutions with a dedication to consistent, effective, and attention-focused execution. Centralized under the Chief of Staff, Business Operations Program Managers are embedded within functional leadership teams in order to drive strategic initiatives, growth and business operations.</i></p>
 
-
 <p>Trying something new will always get pushback (e.g. CoS isn't a function and shouldn't have reports; more bureaucracy; in a bad org this will function as an internal gestapo, etc.) However, silicon valley has always been about experimentation and Krisanna appears to be running one here. I want to learn more, understand the genesis of this team, and follow along as this experiment unfolds.</p>
 
+</div>
+
+<div id="gates" class="hidden">
 <h3><a id="gates">Bill Gates</a></h3>
 <h4> Stack Ranking</h4>
 <p>Stack ranking is an evaluation system born out of the Jack Welch era at GE in the 1980’s. It was known there as “rank-and-yank” and functions as it sounds. </p>
@@ -153,7 +159,7 @@
 <p> Did the initiative improve the quality of teachers? No.</p>
 <p> Did the initiative result in more effective teachers for disadvantaged students? No.</p>
 
-<p><i> There was statistically significant evidence that the project decreased low-income minority students’ access to effective teachers in Hillsborough County Public Schools — both between schools and within the same school — as teachers sought to flee to the honors classes to avoid low VAM scores, which under the new evaluation system, could cost them their jobs.</i><p>
+<p><i> There was statistically significant evidence that the project decreased low-income minority students’ access to effective teachers in Hillsborough County Public Schools — both between schools and within the same school — as teachers sought to flee to the honors classes to avoid low VAM scores, which under the new evaluation system, could cost them their jobs.</i></p>
 <p> Did the initiative do more harm than good? Yes.</p>
 <p> Was this an effective or responsible theory of action? No.</p>
 
@@ -172,6 +178,48 @@
 
 <p>Do I have strong opinions that this was a predictable failure? Yes. I would also have an open mind to hear Gates' side of the story.</p>
 
+</div>
+
+<div id="usafa" class="hidden">
+<h3><a id="usafa">Scott Carrell and James West</a></h3>
+<p>Did I stumble across the greatest educational study of all time?</p>
+
+<p>Carrell and West put out a blockbuster <a href=https://www.jstor.org/stable/10.1086/653808> study</a> with the best design I have ever seen in educational research.</p>
+
+<p>Those who know me well know I have strong opinions about education and even stronger opinions about educational research.</p>
+
+<p>Bad study designs with major limitations are the norm. And if you’ve ever seen the sausage being made, it’s hard not to be skeptical of the validity of your average educational study.</p>
+
+<p>I mean look at what Carrell and West handed us with this study:</p>
+<ul>
+	<li>7 year study at the US Air Force Academy</li>
+	<li>10,534 students</li>
+	<li>421 faculty members</li>
+	<li>30 core courses, all standardized (math, science, social science, humanities, and engineering)</li>
+	<li>Random assignment of students to professors in initial course and follow-on courses</li>
+</ul>
+
+<p>Immaculate!</p>
+
+<p>The title is about professor quality but read the paper, and its most profound implications are what effective teaching does and does not look like. I know a lot of people in education. People who love talking about effective teaching, and yet they either don’t know about this study or aren’t talking about it.</p>
+
+<p>So I would love a sit down with Carrell and West to dive into the meat of this study and put to the test whether it is as profound as I think it is.</p>
+
+</div>
+
+<script>
+    document.querySelectorAll('.toggleVisibility').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var targetId = this.getAttribute('href').substring(1);
+            var targetDiv = document.getElementById(targetId);
+            if (targetDiv) {
+                var isVisible = targetDiv.style.display !== 'none';
+                targetDiv.style.display = isVisible ? 'none' : 'block';
+            }
+        });
+    });
+</script>
 
 </body>
 
