@@ -201,7 +201,7 @@
 
 <p>Immaculate!</p>
 
-<p>The title is about professor quality but read the paper, and its most profound implications are what effective teaching does and does not look like. I know a lot of people in education. People who love talking about effective teaching, and yet they either don’t know about this study or aren’t talking about it.</p>
+<p>The title is about professor quality, but its most profound implications are about what effective teaching does and does not look like. I know a lot of people in education. People who love talking about effective teaching, and yet they either don’t know about this study or aren’t talking about it.</p>
 
 <p>So I would love a sit down with Carrell and West to dive into the meat of this study and put to the test whether it is as profound as I think it is.</p>
 
@@ -214,8 +214,7 @@
             var targetId = this.getAttribute('href').substring(1);
             var targetDiv = document.getElementById(targetId);
             if (targetDiv) {
-                var isVisible = targetDiv.style.display !== 'none';
-                targetDiv.style.display = isVisible ? 'none' : 'block';
+                targetDiv.classList.toggle('hidden');
             }
         });
     });
