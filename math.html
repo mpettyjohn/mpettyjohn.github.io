@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Empathy Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        html, body {
+            font-family: 'Inter', sans-serif;
+            height: 100%;
+        }
+
+        /* --- Modern & Educational Theme --- */
+        :root {
+            --bg-main: #111827; /* gray-900 */
+            --bg-card: #1f2937; /* gray-800 */
+            --bg-card-hover: #17202e;
+            --border-color: #374151; /* gray-700 */
+            --text-primary: #d1d5db; /* gray-300 */
+            --text-secondary: #9ca3af; /* gray-400 */
+            --accent-color: #38bdf8; /* sky-400 */
+            --accent-hover: #7dd3fc; /* sky-300 */
+        }
+
+        body {
+            background-color: var(--bg-main);
+        }
+
+        .main-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .main-title {
+            color: var(--accent-color);
+        }
+
+        .prose {
+            color: var(--text-primary);
+        }
+        
+        .problem-box {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        
+        .problem-box:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-color);
+        }
+
+        .problem-box h2 {
+            color: var(--text-primary);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        .problem-box .catch {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-top: 0.5rem; /* mt-2 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        .problem-box .explanation {
+            color: #d1d5db; /* gray-300 */
+            font-size: 0.95rem; /* slightly smaller text */
+            line-height: 1.6;
+        }
+
+        .problem-box .link {
+            display: inline-block;
+            margin-top: 1rem; /* mt-4 */
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .problem-box .link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="text-gray-300 min-h-screen p-4 sm:p-6">
+
+    <div class="w-full max-w-2xl mx-auto my-8 sm:my-12">
+        <div class="main-card rounded-2xl shadow-2xl p-6 sm:p-10">
+            
+            <h1 class="text-3xl sm:text-4xl font-bold text-center mb-6 main-title">Feeling What They Feel</h1>
+            
+            <div class="prose prose-invert max-w-none text-lg leading-relaxed">
+                <p class="mb-4">Three out of four 8th graders in America struggle in math. It’s not because 8th grade math itself is so difficult but because students’ knowledge is a House of Cards waiting to fall down. The shift from additive reasoning to multiplicative (3rd and 4th grades), then fractional (4th-6th), then proportional (5th-middle school) are key stumbling blocks that build on each other. When one isn’t secured, the future knowledge doesn’t stick.</p>
+                <p class="mb-4">This can be hard for adults to understand, whether that is someone who excelled in math their entire life or even an adult who didn’t really but forgets what it was like to try to learn it. This applies to teachers. If that’s you, then below are some problems to help you feel what it’s like to be those three out of four struggling students. It’s just multiplication after all, how hard can it be?</p>
+            </div>
+
+            <hr class="my-8 border-gray-600">
+
+            <div class="problem-box">
+                <h2>1. &nbsp; 43 x 25</h2>
+                <p class="catch">The catch is that this multiplication problem is in <strong>base-6</strong>, not base-10.</p>
+                <p class="explanation">This might illustrate the frustrations students can feel with the invisible concepts in this procedure, such as place value and the distributive property.</p>
+                <a href="./base6.html" target="_blank" class="link">
+                    Click here to see a base-6 ‘odometer’ if you need help thinking outside of base-10 &rarr;
+                </a>
+            </div>
+
+            <div class="problem-box">
+                <h2>2. &nbsp; DF x EG</h2>
+                <p class="catch">This time let’s replace digits with letters to remove the familiarity we have with the number system. This problem is in <strong>base-7</strong>.</p>
+                <ul class="list-disc list-inside text-gray-300 my-3 ml-2 font-mono">
+                    <li>A = 0</li>
+                    <li>B = 1</li>
+                    <li>C = 2</li>
+                    <li>D = 3</li>
+                    <li>E = 4</li>
+                    <li>F = 5</li>
+                    <li>G = 6</li>
+                </ul>
+                <p class="explanation">This setup removes even more of our built-in number sense, forcing us to rely purely on the rules of the system.</p>
+                <a href="./base7.html" target="_blank" class="link">
+                    Click here to see a base-7 ‘odometer’ if you need help thinking outside of base-10 &rarr;
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

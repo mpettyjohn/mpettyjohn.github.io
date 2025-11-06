@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base 6 Odometer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        html, body {
+            font-family: 'Inter', sans-serif;
+            height: 100%;
+        }
+        
+        /* Custom styles for the odometer digits */
+        .digit-display {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
+            background-color: #1a1a1a; /* Very dark gray */
+            color: #38bdf8; /* Bright Sky Blue */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 5rem; /* Large text */
+            line-height: 1;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px #38bdf8a0;
+            border: 2px solid #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(0,0,0,0.5);
+            min-width: 240px; 
+            text-align: center;
+        }
+
+        /* Base styles for control buttons */
+        .control-btn {
+            font-weight: bold;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem; /* 18px */
+            transition: all 0.2s ease-in-out;
+            transform: scale(1);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .control-btn:hover {
+            transform: scale(1.05);
+        }
+        .control-btn:active {
+            transform: scale(0.98);
+        }
+        .control-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-md">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-700">
+            
+            <h1 class="text-3xl font-bold text-center mb-2 text-sky-400">Base 6 Odometer</h1>
+            <p class="text-center text-gray-400 mb-6">Watch how numbers roll over when we only have digits 0-5.</p>
+
+            <div class="flex justify-center mb-8">
+                <div id="odometer-display" class="digit-display">0000</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button id="add-one" class="control-btn bg-sky-600 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400">
+                    + 1 (Base 6)
+                </button>
+                <button id="add-six" class="control-btn bg-sky-600 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400">
+                    + 10 (Base 6)
+                </button>
+                <button id="decrease-one" class="control-btn bg-red-600 hover:bg-red-500 focus:ring-2 focus:ring-red-400">
+                    - 1 (Base 6)
+                </button>
+                <button id="decrease-six" class="control-btn bg-red-600 hover:bg-red-500 focus:ring-2 focus:ring-red-400">
+                    - 10 (Base 6)
+                </button>
+            </div>
+
+            <div class="text-center mt-6">
+                 <button id="reset" class="text-gray-500 hover:text-red-400 text-sm font-medium transition-colors">
+                    Reset to 0
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const display = document.getElementById('odometer-display');
+            const addOneBtn = document.getElementById('add-one');
+            const addSixBtn = document.getElementById('add-six');
+            const decreaseOneBtn = document.getElementById('decrease-one');
+            const decreaseSixBtn = document.getElementById('decrease-six');
+            const resetBtn = document.getElementById('reset');
+
+            // We store the value in base 10 for easy math.
+            let currentValueInBase10 = 0;
+            const displayDigits = 4; // Show 4 digits
+
+            /**
+             * Updates the display with the base 6 representation of the current value.
+             */
+            function updateDisplay() {
+                // Convert the base 10 number to a base 6 string.
+                let base6String = currentValueInBase10.toString(6);
+                
+                // Pad the beginning with leading zeros to fill the display
+                let paddedString = base6String.padStart(displayDigits, '0');
+
+                // Update the display
+                display.textContent = paddedString;
+
+                // Simple flash effect to show a change
+                display.classList.add('animate-pulse');
+                setTimeout(() => {
+                    display.classList.remove('animate-pulse');
+                }, 200);
+            }
+
+            // --- Event Listeners ---
+
+            addOneBtn.addEventListener('click', () => {
+                currentValueInBase10++;
+                updateDisplay();
+            });
+
+            addSixBtn.addEventListener('click', () => {
+                // Adding 6 in base 10 is the same as adding 10 in base 6.
+                currentValueInBase10 += 6;
+                updateDisplay();
+            });
+
+            decreaseOneBtn.addEventListener('click', () => {
+                if (currentValueInBase10 > 0) {
+                    currentValueInBase10--;
+                    updateDisplay();
+                }
+                // If value is 0, it stays 0.
+            });
+
+            decreaseSixBtn.addEventListener('click', () => { 
+                currentValueInBase10 -= 6; 
+                if (currentValueInBase10 < 0) {
+                    currentValueInBase10 = 0; // Don't allow negative numbers
+                }
+                updateDisplay();
+            });
+
+            resetBtn.addEventListener('click', () => {
+                currentValueInBase10 = 0;
+                updateDisplay();
+            });
+
+            // Initialize the display on load
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Empathy Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Retro Terminal Theme --- */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+
+        :root {
+            --bg-main: #0a0a0a;
+            --text-primary: #f59e0b; /* amber-500 */
+            --text-secondary: #e5e7eb; /* gray-200 */
+            --border-color: #f59e0b;
+        }
+
+        body.theme-retro {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+        }
+        
+        .container-retro {
+            background-color: #111;
+            border: 2px solid var(--border-color);
+            box-shadow: none; /* No modern shadows */
+            border-radius: 0; /* Sharp corners */
+            padding: 2rem;
+        }
+
+        .main-title-retro {
+            color: var(--text-primary);
+            text-align: left; /* Titles often left-aligned in terminals */
+            text-transform: uppercase;
+            font-size: 2.25rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .main-title-retro::after {
+            content: '_';
+            animation: blink 1s step-end infinite; /* Blinking cursor effect */
+            margin-left: 0.25rem;
+            font-weight: 600;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .theme-retro hr {
+            border-style: dashed;
+            border-color: var(--border-color);
+            opacity: 0.5;
+        }
+        
+        .theme-retro .prose {
+             color: var(--text-secondary);
+             line-height: 1.7;
+        }
+
+        .problem-box-retro {
+            border: none;
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+            border-radius: 0;
+        }
+        
+        .problem-box-retro:not(:first-of-type) {
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .problem-box-retro h2 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .problem-box-retro .catch {
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+        
+        .problem-box-retro .explanation {
+            color: #9ca3af; /* gray-400 */
+            font-size: 0.95rem;
+        }
+        
+        .problem-box-retro .link {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: var(--border-color);
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .problem-box-retro .link:hover {
+            background-color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body class="theme-retro min-h-screen p-4 sm:p-6">
+
+    <div class="w-full max-w-3xl mx-auto my-8 sm:my-12">
+        <div class="container-retro">
+            
+            <h1 class="font-bold mb-6 main-title-retro">Objective: Empathy Protocol</h1>
+            
+            <div class="prose max-w-none text-lg leading-relaxed">
+                <p class="mb-4">Three out of four 8th graders in America struggle in math. It’s not because 8th grade math itself is so difficult but because students’ knowledge is a House of Cards waiting to fall down. The shift from additive reasoning to multiplicative (3rd and 4th grades), then fractional (4th-6th), then proportional (5th-middle school) are key stumbling blocks that build on each other. When one isn’t secured, the future knowledge doesn’t stick.</p>
+                <p class="mb-4">This can be hard for adults to understand. Below are some problems to help you feel what it’s like to be those three out of four struggling students. It’s just multiplication after all, how hard can it be?</p>
+            </div>
+
+            <hr class="my-8">
+
+            <div class="problem-box-retro">
+                <h2>1. &nbsp; > RUN MULTIPLY(43, 25) -b 6</h2>
+                <p class="catch">The catch is that this multiplication problem is in <strong>base-6</strong>, not base-10.</p>
+                <p class="explanation">This might illustrate the frustrations students can feel with the invisible concepts in this procedure, such as place value and the distributive property.</p>
+                <a href="./base6.html" target="_blank" class="link">
+                    INITIATE BASE-6 VISUALIZER &rarr;
+                </a>
+            </div>
+
+            <div class="problem-box-retro">
+                <h2>2. &nbsp; > RUN MULTIPLY(DF, EG) -b 7</h2>
+                <p class="catch">This time let’s replace digits with letters to remove the familiarity we have with the number system. This problem is in <strong>base-7</strong>.</p>
+                <ul class="list-disc list-inside my-3 ml-2 text-gray-300">
+                    <li>A = 0</li>
+                    <li>B = 1</li>
+                    <li>C = 2</li>
+                    <li>D = 3</li>
+                    <li>E = 4</li>
+                    <li>F = 5</li>
+                    <li>G = 6</li>
+                </ul>
+                <p class="explanation">This setup removes even more of our built-in number sense, forcing us to rely purely on the rules of the system.</p>
+                <a href="./base7.html" target="_blank" class="link">
+                    INITIATE BASE-7 VISUALIZER &rarr;
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
