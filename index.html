@@ -1,165 +1,278 @@
 <!DOCTYPE html>
-<html>
+<!--
 
+Live Long and Prosper 🖖
+
+-->
+<html lang="en">
 <head>
-    <meta name="robots" content="noindex">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0Q6E6Q62N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-    <title>Mark Pettyjohn</title>
+    gtag('config', 'G-Y0Q6E6Q62N');
+  </script>
 
-    <style type="text/css">
-        body {
-            margin: 0;
-            font-family: 'Courier New', monospace;
-            background-color: black;
-            color: lime;
-            font-size: 16px;
-            padding: 20px;
-            overflow-y: scroll;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Pettyjohn</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
 
-        #output {
-            white-space: pre-wrap;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        #commandInput {
-            width: 100%;
-            background-color: black;
-            border: none;
-            color: lime;
-            outline: none;
-            font-family: 'Courier New', monospace;
-            padding: 5px;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: min(5vw, 48px);
+      background: #000;
+      color: #39ff14;
+      font-family: "Courier New", Courier, monospace;
+      font-size: clamp(14px, 2.1vw, 18px);
+      line-height: 1.6;
+      letter-spacing: 0.015em;
+    }
 
-        #blackout {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: black;
-            z-index: 9999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 20px;
-        }
+    main {
+      width: min(960px, 100%);
+      border: 2px solid #39ff14;
+      padding: min(6vw, 56px);
+      box-shadow: 0 0 24px rgba(57, 255, 20, 0.35);
+      background: radial-gradient(circle at top left, rgba(57, 255, 20, 0.12), transparent 55%);
+    }
 
-        a {
-            color: lime;
-            text-decoration: underline;
-        }
+    h1 {
+      font-size: 1.7em;
+      margin: 0 0 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-        a:visited {
-            color: lime;
-        }
-    </style>
+    h2 {
+      font-size: 1.2em;
+      margin: 0 0 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    .screen-line {
+      display: block;
+    }
+
+    .divider {
+      margin: 1.5em 0;
+      border: none;
+      border-top: 1px dashed rgba(57, 255, 20, 0.5);
+    }
+
+    .menu {
+      display: grid;
+      gap: 0.75em;
+      margin: 1.5em 0 0;
+    }
+
+    .menu__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75em;
+    }
+
+    .menu__label {
+      opacity: 0.7;
+      min-width: 9ch;
+      letter-spacing: 0.08em;
+    }
+
+    .menu__action {
+      color: inherit;
+      background: rgba(57, 255, 20, 0.12);
+      border: 1px solid rgba(57, 255, 20, 0.35);
+      padding: 0.25em 0.75em;
+      font: inherit;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .menu__action:hover,
+    .menu__action:focus-visible {
+      background: rgba(57, 255, 20, 0.35);
+      color: #000;
+      outline: none;
+    }
+
+    .menu__action[disabled] {
+      cursor: not-allowed;
+    }
+
+    .panel {
+      margin-top: 2em;
+      border: 1px solid rgba(57, 255, 20, 0.35);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1.5em;
+      position: relative;
+      display: none;
+      animation: slideDown 0.25s ease;
+    }
+
+    .panel.is-open {
+      display: block;
+    }
+
+    .panel__title {
+      font-size: 1.1em;
+      margin: 0 0 1em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .panel__body p {
+      margin-bottom: 1em;
+    }
+
+    .panel__close {
+      margin-top: 1em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      color: inherit;
+      background: rgba(57, 255, 20, 0.12);
+      border: 1px solid rgba(57, 255, 20, 0.35);
+      padding: 0.25em 0.75em;
+      font: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .panel__close:hover,
+    .panel__close:focus-visible {
+      background: rgba(57, 255, 20, 0.35);
+      color: #000;
+      outline: none;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 32px 18px;
+      }
+
+      main {
+        padding: 32px 20px;
+      }
+
+      .menu__label {
+        display: none;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="output">
-Starting MS-DOS...
+  <main role="main" aria-label="Personal terminal for Mark Pettyjohn">
+    <h1>CP/M-86 FOR THE PERSONAL TERMINAL</h1>
+    <h2>Revision 2024.09</h2>
+    <p class="screen-line">WELCOME, TRAVELER. SYSTEM ONLINE.</p>
+    <p class="screen-line">SELECT A PROGRAM TO CONTINUE.</p>
 
+    <hr class="divider" aria-hidden="true">
 
-C:\> Hi, I'm MARK PETTYJOHN
-
-> I want to live in a positive sum world
-
-> Education is my lever to move us there
-
-> I'm making that lever a lot longer by building <a href="https://mathcoteacher.com" target="_blank" rel="noopener noreferrer">Math CoTeacher</a> 
-
+    <div class="menu" role="navigation" aria-label="Available programs">
+      <div class="menu__item">
+        <span class="menu__label">PROGRAM</span>
+        <button type="button" class="menu__action" data-panel="about">ABOUT.EXE</button>
+      </div>
+      <div class="menu__item">
+        <span class="menu__label">LINK</span>
+        <a class="menu__action" href="https://mathcodeteacher.com" target="_blank" rel="noopener">MATHCODETEACHER.COM</a>
+      </div>
+      <div class="menu__item">
+        <span class="menu__label">LINK</span>
+        <a class="menu__action" href="/blog/">BLOG.DIR</a>
+      </div>
     </div>
-    <input id="commandInput" placeholder="C:\>">
 
-    <div id="blackout"></div>
+    <section class="panel" id="about-panel" aria-live="polite" aria-expanded="false">
+      <h3 class="panel__title">About Mark</h3>
+      <div class="panel__body">
+        <p>My career is a lab, not a ladder. I’ve spent twenty years running experiments on how to turn fragile organizations into compounding systems: first in business, then in public education, and now in artificial intelligence.</p>
+        <p>I studied accounting to learn the language of business and by college I was consulting on strategy and turnarounds. I created construction software and sold it for $5m at age 23. Next I bootstrapped a distributed logistics platform to $100m in bookings, then walked away to teach fourth-grade math in a poor rural district where I became an award-winning teacher and helped build a durable, school-wide movement in math instruction.</p>
+        <p>For the last decade I’ve been chasing a single question across business and education: how do we design systems that let people, especially kids, actually compound?</p>
+        <p>Today I’m working on encoding that expertise into LLMs so the best of what I learned in the classroom can reach millions of students and teachers.</p>
+      </div>
+      <button type="button" class="panel__close" data-close>Close Window</button>
+    </section>
+  </main>
 
-    <script>
-        const commandInput = document.getElementById('commandInput');
-        const output = document.getElementById('output');
-        const blackout = document.getElementById('blackout');
+  <script>
+    (function() {
+      const aboutTrigger = document.querySelector('[data-panel="about"]');
+      const aboutPanel = document.getElementById('about-panel');
+      const closeButton = aboutPanel.querySelector('[data-close]');
+      let lastFocusedElement = null;
 
-        function typeOutText(text, callback) {
-            blackout.textContent = '';
-            let i = 0;
-            const interval = setInterval(() => {
-                blackout.textContent += text[i];
-                i++;
-                if (i === text.length) {
-                    clearInterval(interval);
-                    if (callback) {
-                        setTimeout(callback, 2000);
-                    }
-                }
-            }, 100);
+      function openPanel() {
+        if (aboutPanel.classList.contains('is-open')) {
+          return;
         }
 
-        commandInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-
-                const command = commandInput.value.trim().toUpperCase();
-                let response = '';
-
-                switch (command) {
-                    case 'DIR':
-                        response = '1. Managing by Metrics\n2. Strategy\n3. Coffee Conversations\n4. Books';
-                        break;
-                    case 'HELP':
-                        response = 'Available commands: DIR, HELP, OPEN <number>, DATE, FUN, NOSTALGIA, LOGOFF';
-                        break;
-                    case 'OPEN 1':
-                        window.location.href = 'metrics.html';
-                        return;
-                    case 'OPEN 2':
-                        window.location.href = 'strategy.html';
-                        return;
-                    case 'OPEN 3':
-                        window.location.href = 'coffee.html';
-                        return;
-                    case 'OPEN 4':
-                        window.location.href = 'read.html';
-                        return;
-                    case 'DATE':
-                        response = new Date().toLocaleString();
-                        break;
-                    case 'NOSTALGIA':
-                        window.location.href = 'trail.html';
-                        return;
-                    case 'LOGOFF':
-                        blackout.style.display = 'flex';
-                        typeOutText('Thanks for coming, see you...', () => {
-                            const websites = [
-                            'https://theaviationgeekclub.com/story-behind-famed-sr-71-blackbird-super-low-knife-edge-pass/',
-                            'https://www.spacejam.com/1996/'
-                ];
-                        const randomIndex = Math.floor(Math.random() * websites.length);
-                            window.location.href = websites[randomIndex];
+        lastFocusedElement = document.activeElement;
+        aboutPanel.classList.add('is-open');
+        aboutPanel.setAttribute('aria-expanded', 'true');
+        requestAnimationFrame(() => {
+          aboutPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          closeButton.focus();
         });
-                        break;
+      }
 
-                        return;
-                    case 'FUN':
-                        blackout.style.display = 'flex';
-                        typeOutText('Welcome Back Commander...', () => {
-                            window.location.href = 'https://cncnet.org/';
-                        });
-                        return;
-                    default:
-                        response = 'Unknown command. Type HELP for a list of available commands.';
-                }
+      function closePanel() {
+        if (!aboutPanel.classList.contains('is-open')) {
+          return;
+        }
 
-                output.innerHTML += `\nC:\> ${command}\n${response}\n`;
-                commandInput.value = '';
+        aboutPanel.classList.remove('is-open');
+        aboutPanel.setAttribute('aria-expanded', 'false');
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      }
 
-                // Scroll to the bottom of the content
-                output.scrollTop = output.scrollHeight;
-            }
-        });
-    </script>
+      aboutTrigger.addEventListener('click', openPanel);
+      closeButton.addEventListener('click', closePanel);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closePanel();
+        }
+      });
+    })();
+  </script>
 </body>
-
 </html>
